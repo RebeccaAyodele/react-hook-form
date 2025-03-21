@@ -1,11 +1,13 @@
-import Navbar from "./scenes/Navbar"
+import Header from "./components/Header"
+import NavBar from "./components/NavBar"
 
-function App() {
-    return(
-        <div className="bg-gray-20">
-            <Navbar />
-        </div>
-    )
+const App = () => {
+  return (
+    <div>
+        <Header />
+        <NavBar />
+    </div>
+  )
 }
 
-export default App;
+export default App
