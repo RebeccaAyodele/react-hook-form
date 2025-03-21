@@ -9,6 +9,10 @@ export default {
       colors:  {
         "primary-color": "#F2F9FF" 
       },
+
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"]
+      }
       
     },
     screens: {
