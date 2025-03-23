@@ -13,7 +13,7 @@ const Container = ({types, heading, description}: Props) => {
         <h1 className="text-[22px] font-semibold">{types}</h1>
         <AddTaskIcon />
         </div>
-        <div className="border border-[#81C3FF] w-[98%] h-[275px] mt-[4rem] rounded-3xl border-dotted flex flex-col justify-center items-center">
+        <div className="border-[#81C3FF] w-[98%] h-[275px] mt-[4rem] rounded-3xl border-dotted border-2 flex flex-col justify-center items-center">
             <h1 className="font-bold text-gray-700 text-[14px]">{heading}</h1>
             <p className="text-gray-500 text-[14px]">{description}</p>
         </div>
