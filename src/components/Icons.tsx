@@ -123,7 +123,7 @@ export const AddListIcon = () => {
 
 export const AddTaskIcon = () => {
   return (
-    <div>
+    <div className="bg-[#81C3FF] w-[40px] h-[40px] flex justify-center items-center rounded">
       <svg
         width="22"
         height="22"
