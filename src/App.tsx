@@ -1,7 +1,9 @@
-import Card from "./components/Card";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+import TodoApp from "./components/TodoApp";
+// import TaskCard from "./components/TaskCard";
+// import TaskForm from "./components/TaskForm";
 
 const App = () => {
   return (
@@ -25,10 +27,9 @@ const App = () => {
             description="Task that are completed will appear here"
           />
         </div>
-        <Card
-          title="Design a simple Kanban Board"
-          content="Using figma design tool, design a simple kanban board with the following design requirement and minimum components"
-        />
+        {/* <TaskForm /> */}
+        {/* <TaskCard /> */}
+        <TodoApp />
       </div>
     </div>
   );
