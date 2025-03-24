@@ -1,14 +1,14 @@
 import Container from "./components/Container";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
-import TodoApp from "./components/TodoApp";
+// import TodoApp from "./components/TodoApp";
 // import TaskCard from "./components/TaskCard";
 // import TaskForm from "./components/TaskForm";
 
 const App = () => {
   return (
     <div>
-      <Header />
+      < />
       <NavBar />
       <div className="ml-[16rem] mt-[2rem]">
         <h1 className="text-2xl ml-[2rem] font-bold">Work Board</h1>
@@ -29,7 +29,6 @@ const App = () => {
         </div>
         {/* <TaskForm /> */}
         {/* <TaskCard /> */}
-        <TodoApp />
       </div>
     </div>
   );
