@@ -10,11 +10,11 @@ interface Task {
   type: "Work" | "School" | "Self";
 }
 
-interface KanbanBoardProps {
+interface TodoAppProps {
   isFormVisible: boolean;
 }
 
-export default function TodoApp({isFormVisible}: KanbanBoardProps) {
+export default function TodoApp({isFormVisible}: TodoAppProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
 
@@ -38,7 +38,6 @@ export default function TodoApp({isFormVisible}: KanbanBoardProps) {
     dueDate: string,
     type: "Work" | "School" | "Self"
   ) => {
-    console.log("Adding task:", title, content, dueDate, type);
     const newTask: Task = {
       id: Date.now().toString(),
       title,
@@ -79,9 +78,6 @@ export default function TodoApp({isFormVisible}: KanbanBoardProps) {
 
   return (
     <div className="p-4 max-w-lg mx-auto bg-gray-100 rounded-lg shadow">
-      <Header toggleForm={toggleForm} />
-
-      {isFormVisible && <TaskForm addTask={addTask} />}
 
       <h1 className="text-xl font-bold mb-4">Task Manager</h1>
 
