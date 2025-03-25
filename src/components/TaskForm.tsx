@@ -29,30 +29,31 @@ const TaskForm = ({ addTask }: TaskFormProps) => {
 
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow">
+    <form onSubmit={handleSubmit} className="bg-white p-4 rounded w-[22rem] shadow absolute top-0 left-2/3 text-gray-600 m-[2rem]">
+      <div  className="p-4 max-w-lg mx-auto bg-gray-100 rounded-lg shadow">
       <input
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Task Title"
-        className="border p-2 w-full mb-2"
+        className="border p-2 w-full mb-2 focus:outline-blue-300"
       />
       <textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
         placeholder="Task Content"
-        className="border p-2 w-full mb-2"
+        className="border p-2 w-full mb-2 focus:outline-blue-300"
       />
       <input
         type="date"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
-        className="border p-2 w-full mb-2"
+        className="border p-2 w-full mb-2 focus:outline-blue-300"
       />
       <select
         value={type}
         onChange={(e) => setType(e.target.value as "Work" | "School" | "Self")}
-        className="border p-2 w-full mb-2"
+        className="border p-2 w-full mb-2 focus:outline-blue-300"
       >
         <option value="Work">Work</option>
         <option value="School">School</option>
@@ -60,10 +61,12 @@ const TaskForm = ({ addTask }: TaskFormProps) => {
       </select>
       <button
         type="submit"
-        className="bg-blue-500 text-white p-2 w-full rounded"
+        className="bg-[#249ff7] text-white p-2 w-full rounded"
       >
         Add Task
       </button>
+      </div>
+      
     </form>
   );
 };

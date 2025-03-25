@@ -12,9 +12,10 @@ interface Task {
 
 interface TodoAppProps {
   isFormVisible: boolean;
+  setIsFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function TodoApp({isFormVisible}: TodoAppProps) {
+export default function TodoApp({isFormVisible, setIsFormVisible}: TodoAppProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
 
@@ -46,6 +47,7 @@ export default function TodoApp({isFormVisible}: TodoAppProps) {
       type,
     };
     setTasks([...tasks, newTask]);
+    setIsFormVisible(false);
   };
 
   //DELETE TASK
@@ -77,9 +79,7 @@ export default function TodoApp({isFormVisible}: TodoAppProps) {
   };
 
   return (
-    <div className="p-4 max-w-lg mx-auto bg-gray-100 rounded-lg shadow">
-
-      <h1 className="text-xl font-bold mb-4">Task Manager</h1>
+    <div>
 
       {editingTask ? (
         <div className="bg-white p-4 rounded shadow">

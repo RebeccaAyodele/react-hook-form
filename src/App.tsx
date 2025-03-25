@@ -34,7 +34,7 @@ const App = () => {
             types="Completed"
             description="Task that are completed will appear here"
           />
-          <TodoApp isFormVisible={isFormVisible} />
+          <TodoApp isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} />
         </div>
         {/* <TaskForm /> */}
         {/* <TaskCard /> */}
