@@ -18,7 +18,7 @@ type TaskCardProps = {
 
 const TaskCard = ({ task, deleteTask, startEditing }: TaskCardProps) => {
   return (
-    <div className="w-[292px] h-[275px] bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative">
+    <div className="w-[292px] h-[275px] bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative mt-12">
       <div>
         <img src={profile} alt="profile" className="w-6 h-6" />
       </div>
@@ -28,7 +28,7 @@ const TaskCard = ({ task, deleteTask, startEditing }: TaskCardProps) => {
       <div>
         <p className="text-gray-600">{task.content}</p>
       </div>
-      <div className="flex justify-between items-center mt-4">
+      <div className="flex justify-between gap-20 items-center mt-4 fixed top-3/4">
         <div>
           <div className="flex items-center gap-2">
             <div className="bg-green-200 rounded w-[46px] h-[26px] text-center">

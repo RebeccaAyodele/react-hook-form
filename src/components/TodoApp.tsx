@@ -82,7 +82,7 @@ export default function TodoApp({isFormVisible, setIsFormVisible}: TodoAppProps)
     <div>
 
       {editingTask ? (
-        <div className="bg-white p-4 rounded shadow">
+        <div className="bg-white p-4 rounded shadow w-[18rem]">
           <input
             type="text"
             value={editingTask.title}

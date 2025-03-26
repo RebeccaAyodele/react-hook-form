@@ -29,20 +29,19 @@ const TaskForm = ({ addTask }: TaskFormProps) => {
 
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-4 rounded w-[22rem] shadow absolute top-0 left-2/3 text-gray-600 m-[2rem]">
-      <div  className="p-4 max-w-lg mx-auto bg-gray-100 rounded-lg shadow">
+    <form onSubmit={handleSubmit} className="w-[292px] h-[275px] bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-4 mt-12 relative">
       <input
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Task Title"
-        className="border p-2 w-full mb-2 focus:outline-blue-300"
+        className="border p-1 w-full mb-2 px-2 focus:outline-blue-300"
       />
       <textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
         placeholder="Task Content"
-        className="border p-2 w-full mb-2 focus:outline-blue-300"
+        className="border w-full px-2 mb-2 focus:outline-blue-300"
       />
       <input
         type="date"
@@ -61,11 +60,10 @@ const TaskForm = ({ addTask }: TaskFormProps) => {
       </select>
       <button
         type="submit"
-        className="bg-[#249ff7] text-white p-2 w-full rounded"
+        className="bg-blue-400 text-white p-2 w-full rounded"
       >
         Add Task
       </button>
-      </div>
       
     </form>
   );

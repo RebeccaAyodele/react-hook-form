@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TaskForm from "./TaskForm";
 import TaskCard from "./TaskCard";
-import { AddTaskIcon } from "./Icons";
+import { AddListIcon, AddTaskIcon } from "./Icons";
 
 type Props = {
   types: string;
@@ -10,7 +10,7 @@ type Props = {
 };
 
 type Task = {
-  id: string;
+  id?: string;
   title: string;
   content: string;
   dueDate: string;
@@ -20,6 +20,7 @@ type Task = {
 const Container = ({ types, heading, description }: Props) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
 
   const toggleForm = () => {
     setIsFormVisible((prev) => !prev);
@@ -41,12 +42,32 @@ const Container = ({ types, heading, description }: Props) => {
     setIsFormVisible(false); // HIDE FORM AFTER ADDING TASK
   };
 
-  const deleteTask = (taskId: string) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  //DELETE TASK
+  const deleteTask = (id: string) => {
+    setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  const startEditing = (taskId: string) => {
-    console.log("Editing task with ID:", taskId);
+  // EDIT TASK
+  const startEditing = (task: Task) => {
+    setEditingTask(task);
+  };
+
+  //SAVE EDITED TASK
+  const saveEditing = (
+    title: string,
+    content: string,
+    dueDate: string,
+    type: "Work" | "School" | "Self"
+  ) => {
+    if (!editingTask) return;
+    setTasks(
+      tasks.map((task) =>
+        task.id === editingTask.id
+          ? { ...task, title, content, dueDate, type }
+          : task
+      )
+    );
+    setEditingTask(null);
   };
 
   return (
@@ -61,18 +82,27 @@ const Container = ({ types, heading, description }: Props) => {
       {isFormVisible && <TaskForm addTask={addTask} />}
 
       {tasks.length === 0 ? (
-        <div className="temporary border-[#81C3FF] w-[98%] h-[275px] mt-[4rem] rounded-3xl border-dotted border-2 flex flex-col justify-center items-center">
-        <h1 className="font-bold text-gray-700 text-[14px]">{heading}</h1>
-        <p className="text-gray-500 text-[14px]">{description}</p>
-      </div>
+        //EMPTY CONTAINER
+        <div className="temporary border-[#81C3FF] w-[98%] h-[275px] mt-[4rem] bg-red rounded-3xl border-dotted border-2 flex flex-col justify-center items-center">
+          <h1 className="font-bold text-gray-700 text-[14px]">{heading}</h1>
+          <p className="text-gray-500 text-[14px]">{description}</p>
+        </div>
       ) : (
+
+        //NON_EMPTY CONTAINER
         <div className="mt-4">
           {tasks.map((task) => (
-            <TaskCard key={task.id} task={task} deleteTask={deleteTask} startEditing={startEditing} />
+            <TaskCard
+              key={task.id}
+              task={task}
+              deleteTask={deleteTask}
+              startEditing={startEditing}
+            />
           ))}
         </div>
       )}
     </div>
+    
   );
 };
 
