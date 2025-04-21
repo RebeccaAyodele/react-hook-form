@@ -1,25 +1,30 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useTasksDispatch } from "./TaskContent";
 
-interface AddTaskProps {
+type AddTaskProps = {
   onAddTask: (text: string) => void;
-}
+};
 
 export default function AddTask({ onAddTask }: AddTaskProps) {
   const [text, setText] = useState("");
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!text.trim()) return;
-    onAddTask(text);
-    setText("");
-  }
-
+  const dispatch = useTasksDispatch();
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text"
-      value={text}
-      onChange={e => setText(e.target.value)}
-      placeholder="Add task" />
-    </form>
+    <>
+      <input
+        placeholder="Add Task"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button onClick={() => {
+        setText("");
+        dispatch({
+            type: "added",
+            id: nextId++,
+            text: text,
+        })
+      }}>Add</button>
+    </>
   );
 }
+
+let nextId = 3
