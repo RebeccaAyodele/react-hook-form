@@ -1,17 +1,32 @@
-import Card from "./components/Card";
+import { useState } from "react";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+import TodoApp from "./components/TodoApp";
+import { useAppState } from "./components/AppStateContext";
+// import TaskCard from "./components/TaskCard";
+// import TaskForm from "./components/TaskForm";
+
+
 
 const App = () => {
+  const {state} = useAppState();
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const toggleForm = () => {
+    setIsFormVisible((prev) => !prev);
+  }
   return (
     <div>
-      <Header />
+      <Header toggleForm={toggleForm} />
       <NavBar />
       <div className="ml-[16rem] mt-[2rem]">
         <h1 className="text-2xl ml-[2rem] font-bold">Work Board</h1>
         <div className="flex justify-around">
-          <Container
+          {state.lists.map((list, i) => (
+            <Container types={list.text} description={list.description} heading={list.heading} />
+          ))}
+          {/* <Container
             types="To-Do"
             heading="No task yet"
             description="Add a new task to get started"
@@ -23,12 +38,11 @@ const App = () => {
           <Container
             types="Completed"
             description="Task that are completed will appear here"
-          />
+          /> */}
+          <TodoApp isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} />
         </div>
-        <Card
-          title="Design a simple Kanban Board"
-          content="Using figma design tool, design a simple kanban board with the following design requirement and minimum components"
-        />
+        {/* <TaskForm /> */}
+        {/* <TaskCard /> */}
       </div>
     </div>
   );

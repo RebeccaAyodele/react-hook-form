@@ -1,8 +1,12 @@
 import { SearchIcon, AddListIcon } from "./Icons";
 import logo from "../images/Logo.jpg";
-import profile from "../images/profile.jpg"
+import profile from "../images/profile.jpg";
 
-const Header = () => {
+interface HeaderProps {
+  toggleForm: () => void;
+}
+
+const Header = ({ toggleForm }: HeaderProps) => {
   return (
     <div className="flex justify-between border-b-2 border-gray-300 px-4 pb-4 font-poppins">
       <div className="flex justify-center items-center">
@@ -11,14 +15,18 @@ const Header = () => {
       </div>
       <div className="flex">
         <form className="w-full relative">
-          <SearchIcon />
+          <button onClick={toggleForm}>
+            <SearchIcon />
+          </button>
           <input
             type="text"
             placeholder="Search Tasks"
             className="bg-blue-50 rounded-xl w-[37vw] h-[56px] placeholder:pl-24 placeholder:text-xl"
           />
         </form>
-        <AddListIcon />
+        <button type="button" onClick={toggleForm}>
+          <AddListIcon />
+        </button>
       </div>
       <div className="flex justify-center items-center mx-20 gap-4">
         <img src={profile} alt="Profile picture" />

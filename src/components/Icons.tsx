@@ -1,3 +1,7 @@
+type Props = {
+  onClick: () => void;
+}
+
 export const DashBoardIcon = () => {
   return (
     <div className="hover:text-blue-500">
@@ -82,7 +86,7 @@ export const MyBoardsIcon = () => {
 
 export const SearchIcon = () => {
   return (
-    <div className="absolute tow-[24px] h-[24px] flex items-center justify-center/3 left-12">
+    <div className="absolute top-[15px] h-[24px] flex items-center justify-center left-12">
       <svg
         width="21"
         height="20"
@@ -259,10 +263,11 @@ export const DoneIcon = () => {
   );
 };
 
-export const DeleteIcon = () => {
+export const DeleteIcon = ({onClick}: Props) => {
   return (
     <div className="bg-gray-100 w-[24px] h-[24px] flex items-center justify-center rounded">
       <svg
+      onClick={onClick}
         width="15"
         height="16"
         viewBox="0 0 15 16"
@@ -280,10 +285,11 @@ export const DeleteIcon = () => {
   );
 };
 
-export const DragIcon = () => {
+export const DragIcon = ({onClick}: Props) => {
   return (
     <div className="bg-gray-100 w-[24px] h-[24px] flex items-center justify-center rounded">
       <svg
+      onClick={onClick}
         width="19"
         height="19"
         viewBox="0 0 19 19"
@@ -311,10 +317,11 @@ export const DragIcon = () => {
   );
 };
 
-export const EditIcon = () => {
+export const EditIcon = ({onClick}: Props) => {
   return (
     <div className="bg-gray-100 w-[24px] h-[24px] flex items-center justify-center rounded">
       <svg
+        onClick={onClick}
         width="16"
         height="15"
         viewBox="0 0 16 15"
