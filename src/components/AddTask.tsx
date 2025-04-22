@@ -7,7 +7,7 @@ type AddTaskProps = {
 
 export default function AddTask({ onAddTask }: AddTaskProps) {
   const [text, setText] = useState("");
-  const dispatch = useTasksDispatch();
+  const dispatch: React.Dispatch<Action> | null = useTasksDispatch();
   return (
     <>
       <input
@@ -15,16 +15,22 @@ export default function AddTask({ onAddTask }: AddTaskProps) {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <button onClick={() => {
-        setText("");
-        dispatch({
-            type: "added",
-            id: nextId++,
-            text: text,
-        })
-      }}>Add</button>
+      <button
+        onClick={() => {
+          if (dispatch) {
+            setText("");
+            dispatch({
+              type: "added",
+              id: nextId++,
+              text: text,
+            });
+          }
+        }}
+      >
+        Add
+      </button>
     </>
   );
 }
 
-let nextId = 3
+let nextId = 3;
