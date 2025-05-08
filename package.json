@@ -15,7 +15,9 @@
     "heroicons": "^2.2.0",
     "react": "^19.0.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.3",
+    "zustand": "^5.0.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
