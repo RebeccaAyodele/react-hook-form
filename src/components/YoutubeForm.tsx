@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
@@ -37,7 +37,7 @@ const YoutubeForm = () => {
     },
   });
 
-  const { register, control, handleSubmit, formState, watch } = form;
+  const { register, control, handleSubmit, formState, getValues } = form;
   const { errors } = formState;
 
   const onSubmit = (data: FormValues) => {
@@ -48,12 +48,16 @@ const YoutubeForm = () => {
     control,
   });
 
-  useEffect(() => {
-    const subscription = watch((value) => {
-      console.log(value);
-    })
-    return () => subscription.unsubscribe();
-  }, [watch])
+  const handleGetValues = () => {
+    console.log("Get values: ", getValues())
+  }
+
+  // useEffect(() => {
+  //   const subscription = watch((value) => {
+  //     console.log(value);
+  //   })
+  //   return () => subscription.unsubscribe();
+  // }, [watch])
 
   // const watchForm = watch()
 
@@ -242,6 +246,7 @@ const YoutubeForm = () => {
         </div>
 
         <button>Submit</button>
+        <button type="button" onClick={handleGetValues}>Get Values</button>
       </form>
       <DevTool control={control} />
     </div>
