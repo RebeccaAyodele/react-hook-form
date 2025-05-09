@@ -43,3 +43,13 @@ button {
     padding: 0.2rem 0.8rem;
     border-radius: 8px;
 }
+
+.form-control {
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: left;
+}
