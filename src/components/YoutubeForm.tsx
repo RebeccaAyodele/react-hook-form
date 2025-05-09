@@ -37,7 +37,7 @@ const YoutubeForm = () => {
     },
   });
 
-  const { register, control, handleSubmit, formState, getValues } = form;
+  const { register, control, handleSubmit, formState, getValues, setValue } = form;
   const { errors } = formState;
 
   const onSubmit = (data: FormValues) => {
@@ -50,6 +50,14 @@ const YoutubeForm = () => {
 
   const handleGetValues = () => {
     console.log("Get values: ", getValues())
+  }
+
+  const handleSetValues = () => {
+    setValue("username", "", {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    })
   }
 
   // useEffect(() => {
@@ -247,6 +255,7 @@ const YoutubeForm = () => {
 
         <button>Submit</button>
         <button type="button" onClick={handleGetValues}>Get Values</button>
+        <button type="button" onClick={handleSetValues}>Set Values</button>
       </form>
       <DevTool control={control} />
     </div>
