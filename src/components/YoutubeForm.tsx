@@ -8,9 +8,10 @@ type FormValues = {
   email: string;
   channel: string;
   social: {
-    twitter: string
-    facebook: string
-  }
+    twitter: string;
+    facebook: string;
+  };
+  phoneNumbers: string[];
 };
 
 const YoutubeForm = () => {
@@ -22,10 +23,10 @@ const YoutubeForm = () => {
       social: {
         twitter: "",
         facebook: "",
-      }
+      },
+      phoneNumbers: ["", ""],
     },
-  }
-  );
+  });
   const { register, control, handleSubmit, formState } = form;
   const { errors } = formState;
 
@@ -66,13 +67,17 @@ const YoutubeForm = () => {
               validate: {
                 notAdmin: (fieldValue) => {
                   return (
-                    fieldValue !== "admin@example.com" || "Enter a different email address"
+                    fieldValue !== "admin@example.com" ||
+                    "Enter a different email address"
                   );
                 },
                 notBlackListed: (fieldValue) => {
-                  return !fieldValue.endsWith("baddomain.com") || "This domain is not supported"
-                }
-              }
+                  return (
+                    !fieldValue.endsWith("baddomain.com") ||
+                    "This domain is not supported"
+                  );
+                },
+              },
             })}
           />
           <p className="error">{errors.email?.message}</p>
@@ -98,17 +103,59 @@ const YoutubeForm = () => {
           <input
             type="text"
             id="twitter"
-            {...register("social.twitter")}
+            {...register("social.twitter", {
+              required: {
+                value: true,
+                message: "Twitter username is required",
+              },
+            })}
           />
+          <p className="error">{errors.social?.twitter?.message}</p>
         </div>
-        
+
         <div className="form-control">
           <label htmlFor="facebook">Facebook</label>
           <input
             type="text"
             id="facebook"
-            {...register("social.facebook")}
+            {...register("social.facebook", {
+              required: {
+                value: true,
+                message: "Facebook username is required",
+              },
+            })}
           />
+          <p className="error">{errors.social?.facebook?.message}</p>
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="primary-phone">Primary phone number</label>
+          <input
+            type="text"
+            id="primary-phone"
+            {...register("phoneNumbers.0", {
+              required: {
+                value: true,
+                message: "Primary phone number is required",
+              },
+            })}
+          />
+          <p className="error">{errors.phoneNumbers?.message}</p>
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="secondary-phone">Secondary phone number</label>
+          <input
+            type="text"
+            id="secondary-phone"
+            {...register("phoneNumbers.1", {
+              required: {
+                value: true,
+                message: "Secondary phone number is required",
+              },
+            })}
+          />
+          <p className="error">{errors.phoneNumbers?.message}</p>
         </div>
 
         <button>Submit</button>
