@@ -6,6 +6,11 @@
     color: white;
 }
 
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
 body {
     background-color: rgba(0, 0, 0, 0.945);
     display: flex;
@@ -31,4 +36,10 @@ input {
     border: 1px solid #fff;
     border-radius: 4px;
     margin-bottom: 20px;
+}
+
+button {
+    background: rgba(0, 0, 0, 0.709);
+    padding: 0.2rem 0.8rem;
+    border-radius: 8px;
 }
