@@ -33,15 +33,34 @@ const YoutubeForm = () => {
       phoneNumbers: ["", ""],
       phNumbers: [{ number: "" }],
       age: 0,
-      dob: new Date()
+      dob: new Date(),
     },
   });
 
-  const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
-  const { errors, touchedFields, dirtyFields, isDirty, isValid } = formState;
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState,
+    watch,
+    getValues,
+    setValue,
+  } = form;
+  const {
+    errors,
+    touchedFields,
+    dirtyFields,
+    isDirty,
+    isValid,
+    isSubmitting,
+    isSubmitted,
+    isSubmitSuccessful,
+    submitCount,
+  } = formState;
 
-  console.log({touchedFields, dirtyFields, isDirty});
-  
+  console.log({ isSubmitting, isSubmitted, isSubmitSuccessful, submitCount });
+
+  // console.log({touchedFields, dirtyFields, isDirty});
 
   const onSubmit = (data: FormValues) => {
     console.log("Form Submitted", data);
@@ -49,8 +68,7 @@ const YoutubeForm = () => {
 
   const onError = (errors: FieldErrors<FormValues>) => {
     console.log("Form errors", errors);
-    
-  }
+  };
 
   const { fields, append, remove } = useFieldArray({
     name: "phNumbers",
@@ -58,16 +76,16 @@ const YoutubeForm = () => {
   });
 
   const handleGetValues = () => {
-    console.log("Get values: ", getValues())
-  }
+    console.log("Get values: ", getValues());
+  };
 
   const handleSetValues = () => {
     setValue("username", "", {
       shouldValidate: true,
       shouldDirty: true,
       shouldTouch: true,
-    })
-  }
+    });
+  };
 
   // useEffect(() => {
   //   const subscription = watch((value) => {
@@ -106,7 +124,7 @@ const YoutubeForm = () => {
             id="email"
             {...register("email", {
               pattern: {
-                value: /^[a-zA-Z0-9.!#$%&'*+/=?^-`{|}]/,
+                value: /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/,
                 message: "Invalid email format",
               },
               validate: {
@@ -215,10 +233,7 @@ const YoutubeForm = () => {
                     {...register(`phNumbers.${index}.number` as const)}
                   />
                   {index > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => remove(index)}
-                    >
+                    <button type="button" onClick={() => remove(index)}>
                       Remove
                     </button>
                   )}
@@ -263,9 +278,13 @@ const YoutubeForm = () => {
           <p className="error">{errors.dob?.message}</p>
         </div>
 
-        <button disabled={!isDirty || !isValid}>Submit</button>
-        <button type="button" onClick={handleGetValues}>Get Values</button>
-        <button type="button" onClick={handleSetValues}>Set Values</button>
+        <button disabled={ !isDirty || !isValid || isSubmitting}>Submit</button>
+        <button type="button" onClick={handleGetValues}>
+          Get Values
+        </button>
+        <button type="button" onClick={handleSetValues}>
+          Set Values
+        </button>
       </form>
       <DevTool control={control} />
     </div>
