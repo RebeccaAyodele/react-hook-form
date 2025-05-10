@@ -1,4 +1,4 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm, useFieldArray, FieldErrors } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
@@ -45,6 +45,7 @@ const YoutubeForm = () => {
     watch,
     getValues,
     setValue,
+    reset,
   } = form;
   const {
     errors,
@@ -86,6 +87,12 @@ const YoutubeForm = () => {
       shouldTouch: true,
     });
   };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset])
 
   // useEffect(() => {
   //   const subscription = watch((value) => {
@@ -278,7 +285,10 @@ const YoutubeForm = () => {
           <p className="error">{errors.dob?.message}</p>
         </div>
 
-        <button disabled={ !isDirty || !isValid || isSubmitting}>Submit</button>
+        <button disabled={!isDirty || !isValid || isSubmitting}>Submit</button>
+        <button type="button" onClick={() => reset()}>
+          Reset
+        </button>
         <button type="button" onClick={handleGetValues}>
           Get Values
         </button>
