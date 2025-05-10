@@ -37,7 +37,7 @@ const YoutubeForm = () => {
     },
   });
 
-  const { register, control, handleSubmit, formState, getValues, setValue } = form;
+  const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
   const { errors, touchedFields, dirtyFields, isDirty } = formState;
 
   console.log({touchedFields, dirtyFields, isDirty});
@@ -143,6 +143,7 @@ const YoutubeForm = () => {
             type="text"
             id="twitter"
             {...register("social.twitter", {
+              disabled: watch("channel") === "",
               required: {
                 value: true,
                 message: "Twitter username is required",
