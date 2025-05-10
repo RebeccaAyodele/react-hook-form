@@ -35,7 +35,7 @@ const YoutubeForm = () => {
       age: 0,
       dob: new Date(),
     },
-    mode: "all" //onChange, onTouched, onBlur, all
+    mode: "all" //onChange, onTouched, onBlur, onSubmit, all
   });
 
   const {
@@ -47,6 +47,7 @@ const YoutubeForm = () => {
     getValues,
     setValue,
     reset,
+    trigger,
   } = form;
   const {
     errors,
@@ -300,6 +301,9 @@ const YoutubeForm = () => {
         </button>
         <button type="button" onClick={handleSetValues}>
           Set Values
+        </button>
+        <button type="button" onClick={() => trigger()}>
+          Validate
         </button>
       </form>
       <DevTool control={control} />
